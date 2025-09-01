@@ -496,20 +496,294 @@
     .card:nth-child(3) { animation-delay: 0.2s; }
     .card:nth-child(4) { animation-delay: 0.3s; }
 
-    /* Responsive */
+    /* Mobile Navigation */
+    .mobile-menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: var(--radius);
+      transition: background-color 0.2s ease;
+    }
+    
+    .mobile-menu-toggle:hover {
+      background: var(--background-subtle);
+    }
+    
+    .mobile-menu-toggle svg {
+      width: 24px;
+      height: 24px;
+      color: var(--text-primary);
+    }
+    
+    .mobile-nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--background);
+      border-bottom: 1px solid var(--border-light);
+      box-shadow: var(--shadow-soft);
+      z-index: 40;
+    }
+    
+    .mobile-nav.active {
+      display: block;
+    }
+    
+    .mobile-nav ul {
+      flex-direction: column;
+      gap: 0;
+      padding: var(--spacing-sm) 0;
+    }
+    
+    .mobile-nav li {
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    
+    .mobile-nav li:last-child {
+      border-bottom: none;
+    }
+    
+    .mobile-nav a {
+      display: block;
+      padding: var(--spacing-sm) var(--spacing-md);
+      font-size: 1rem;
+    }
+    
+    .mobile-nav .btn-primary {
+      margin: var(--spacing-sm) var(--spacing-md);
+      width: calc(100% - 2 * var(--spacing-md));
+      justify-content: center;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+      .container {
+        padding: 0 var(--spacing-md);
+      }
+      
+      .hero {
+        padding: var(--spacing-lg) 0;
+      }
+      
+      .hero-inner {
+        gap: var(--spacing-lg);
+      }
+    }
+
     @media (max-width: 980px) {
-      .hero-inner { grid-template-columns: 1fr; }
-      .grid-3 { grid-template-columns: 1fr; }
-      .why { grid-template-columns: 1fr; }
-      form { grid-template-columns: 1fr; }
-      .container { padding: 0 var(--spacing-sm); }
+      .hero-inner { 
+        grid-template-columns: 1fr; 
+        gap: var(--spacing-lg);
+      }
+      
+      .grid-3 { 
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: var(--spacing-md);
+      }
+      
+      .why { 
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+      }
+      
+      form { 
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+      }
+      
+      .container { 
+        padding: 0 var(--spacing-sm); 
+      }
+      
+      .hero-points {
+        grid-template-columns: 1fr;
+      }
+      
+      .partners-track {
+        gap: var(--spacing-lg);
+      }
+      
+      .partner-logo {
+        min-width: 120px;
+        height: 70px;
+      }
     }
 
     @media (max-width: 768px) {
-      .hero-card { order: -1; }
-      .footer-inner { grid-template-columns: 1fr; text-align: center; gap: var(--spacing-md); }
-      .social { justify-content: center; }
-      section { padding: var(--spacing-lg) 0; }
+      /* Navigation */
+      .nav {
+        position: relative;
+      }
+      
+      .mobile-menu-toggle {
+        display: block;
+      }
+      
+      nav {
+        display: none;
+      }
+      
+      /* Hero */
+      .hero {
+        padding: var(--spacing-md) 0;
+        min-height: auto;
+      }
+      
+      .hero-card { 
+        order: -1; 
+        padding: var(--spacing-md);
+      }
+      
+      h1 {
+        font-size: clamp(2rem, 8vw, 3rem);
+        margin-bottom: var(--spacing-sm);
+      }
+      
+      .tagline {
+        font-size: 1.1rem;
+        margin-bottom: var(--spacing-md);
+      }
+      
+      .hero-cta {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--spacing-sm);
+      }
+      
+      .btn-primary {
+        justify-content: center;
+        padding: 16px 24px;
+      }
+      
+      /* Sections */
+      section { 
+        padding: var(--spacing-lg) 0; 
+      }
+      
+      .section-title {
+        font-size: clamp(1.5rem, 6vw, 2rem);
+        margin-bottom: var(--spacing-sm);
+      }
+      
+      .section-sub {
+        font-size: 1rem;
+        margin-bottom: var(--spacing-md);
+      }
+      
+      /* Cards */
+      .grid-3 {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+      }
+      
+      .card {
+        padding: var(--spacing-md);
+      }
+      
+      /* Footer */
+      .footer-inner { 
+        grid-template-columns: 1fr; 
+        text-align: center; 
+        gap: var(--spacing-md); 
+      }
+      
+      .social { 
+        justify-content: center; 
+      }
+      
+      /* Form */
+      form {
+        padding: var(--spacing-md);
+      }
+      
+      .form-actions {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 480px) {
+      /* Extra small screens */
+      .container {
+        padding: 0 var(--spacing-xs);
+      }
+      
+      .hero {
+        padding: var(--spacing-sm) 0;
+      }
+      
+      .hero-card {
+        padding: var(--spacing-sm);
+      }
+      
+      h1 {
+        font-size: clamp(1.75rem, 10vw, 2.5rem);
+      }
+      
+      .tagline {
+        font-size: 1rem;
+      }
+      
+      section {
+        padding: var(--spacing-md) 0;
+      }
+      
+      .card {
+        padding: var(--spacing-sm);
+      }
+      
+      .chip {
+        padding: 10px 12px;
+        font-size: 0.8rem;
+      }
+      
+      .btn-primary {
+        padding: 14px 20px;
+        font-size: 0.85rem;
+      }
+      
+      .partner-logo {
+        min-width: 100px;
+        height: 60px;
+      }
+      
+      .partners-track {
+        gap: var(--spacing-md);
+      }
+    }
+
+    /* Touch improvements */
+    @media (hover: none) and (pointer: coarse) {
+      .btn-primary:hover {
+        transform: none;
+      }
+      
+      .card:hover {
+        transform: none;
+      }
+      
+      .chip:hover {
+        transform: none;
+      }
+      
+      .social a:hover {
+        transform: none;
+      }
+      
+      .partner-logo:hover {
+        transform: none;
+      }
+    }
+
+    /* High DPI displays */
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
     }
   </style>
 </head>
@@ -520,6 +794,8 @@
         <img src="original-3dcdfd36cc32f490632f4ab2c1b4068f.jpg" alt="Infomac IT Solutions Logo" class="logo">
         <span>Infomac IT Solutions</span>
       </a>
+      
+      <!-- Desktop Navigation -->
       <nav aria-label="Primary">
         <ul>
           <li><a href="#about">About</a></li>
@@ -528,6 +804,25 @@
           <li><a href="#why">Why Us</a></li>
           <li><a href="#contact">Contact</a></li>
           <li><button id="consult-top" class="btn-primary" type="button">Book a Free Consultation</button></li>
+        </ul>
+      </nav>
+      
+      <!-- Mobile Menu Toggle -->
+      <button class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+      
+      <!-- Mobile Navigation -->
+      <nav class="mobile-nav" aria-label="Mobile navigation">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#partners">Partners</a></li>
+          <li><a href="#why">Why Us</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><button id="consult-mobile" class="btn-primary" type="button">Book a Free Consultation</button></li>
         </ul>
       </nav>
     </div>
@@ -774,7 +1069,8 @@
     const consultationButtons = [
       document.getElementById('consult-top'),
       document.getElementById('consult-hero'),
-      document.getElementById('consult-why')
+      document.getElementById('consult-why'),
+      document.getElementById('consult-mobile')
     ].filter(Boolean);
 
     consultationButtons.forEach(btn => {
@@ -787,8 +1083,59 @@
             block: 'start'
           });
         }
+        
+        // Close mobile menu if open
+        const mobileNav = document.querySelector('.mobile-nav');
+        const mobileToggle = document.querySelector('.mobile-menu-toggle');
+        if (mobileNav && mobileNav.classList.contains('active')) {
+          mobileNav.classList.remove('active');
+          mobileToggle.setAttribute('aria-expanded', 'false');
+        }
       });
     });
+
+    // Mobile menu functionality
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const mobileNav = document.querySelector('.mobile-nav');
+    
+    if (mobileMenuToggle && mobileNav) {
+      mobileMenuToggle.addEventListener('click', () => {
+        const isOpen = mobileNav.classList.contains('active');
+        
+        if (isOpen) {
+          mobileNav.classList.remove('active');
+          mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        } else {
+          mobileNav.classList.add('active');
+          mobileMenuToggle.setAttribute('aria-expanded', 'true');
+        }
+      });
+      
+      // Close mobile menu when clicking on navigation links
+      const mobileNavLinks = mobileNav.querySelectorAll('a');
+      mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileNav.classList.remove('active');
+          mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+      
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!mobileMenuToggle.contains(e.target) && !mobileNav.contains(e.target)) {
+          mobileNav.classList.remove('active');
+          mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+      
+      // Close mobile menu on window resize
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+          mobileNav.classList.remove('active');
+          mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
 
     // Contact form: open mail client with prefilled details
     const form = document.getElementById('contact-form');
