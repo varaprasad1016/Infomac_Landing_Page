@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Infomac IT Solutions — End-to-End Software Support</title>
+  <meta name="description" content="Infomac IT Solutions provides end-to-end support for fleet tracking, tacho analysis, and DVR/video feed solutions." />
+  <meta name="theme-color" content="#1f4fbf" />
+  
+  <style>
+    :root {
+      --brand-primary: #2c3e50; /* sophisticated dark blue-gray */
+      --brand-accent: #34495e;
+      --brand-light: #ecf0f1;
+      --text-primary: #2c3e50;
+      --text-secondary: #7f8c8d;
+      --text-muted: #95a5a6;
+      --background: #ffffff;
+      --background-subtle: #fafbfc;
+      --border-light: #e8eaed;
+      --border-subtle: #f1f3f4;
+      --max-w: 1200px;
+      --radius: 8px;
+      --radius-lg: 16px;
+      --shadow-subtle: 0 1px 3px rgba(44, 62, 80, 0.04);
+      --shadow-soft: 0 4px 12px rgba(44, 62, 80, 0.08);
+      --shadow-elevated: 0 8px 32px rgba(44, 62, 80, 0.12);
+      --spacing-xs: 8px;
+      --spacing-sm: 16px;
+      --spacing-md: 24px;
+      --spacing-lg: 48px;
+      --spacing-xl: 80px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--text-primary);
+      background: var(--background);
+      line-height: 1.7;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+    /* Layout helpers */
+    .container {
+      width: 100%;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header / Nav */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+      padding: 0 var(--spacing-md);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+      font-size: 1.125rem;
+      letter-spacing: -0.02em;
+      color: var(--brand-primary);
+      text-decoration: none;
+    }
+    .logo {
+      height: 40px;
+      width: 40px;
+      object-fit: cover;
+      object-position: center left;
+    }
+    nav ul { list-style: none; display: flex; gap: var(--spacing-lg); margin: 0; padding: 0; }
+    nav a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      letter-spacing: -0.01em;
+      transition: color 0.2s ease;
+    }
+    nav a:hover { color: var(--brand-primary); }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--brand-primary);
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: var(--radius);
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 0.9rem;
+      letter-spacing: -0.01em;
+      box-shadow: var(--shadow-subtle);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .btn-primary:hover { 
+      background: var(--brand-accent);
+      box-shadow: var(--shadow-soft);
+      transform: translateY(-1px);
+    }
+    .btn-primary:active { 
+      transform: translateY(0);
+      box-shadow: var(--shadow-subtle);
+    }
+
+    /* Hero */
+    .hero {
+      padding: var(--spacing-xl) 0;
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: var(--spacing-xl);
+      align-items: center;
+    }
+    .kicker { 
+      color: var(--text-muted); 
+      font-weight: 500; 
+      letter-spacing: 0.05em; 
+      font-size: 0.8rem; 
+      text-transform: uppercase;
+      margin-bottom: var(--spacing-sm);
+    }
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 1.1;
+      margin: 0 0 var(--spacing-md);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+    .tagline { 
+      font-size: 1.25rem; 
+      color: var(--text-secondary); 
+      max-width: 600px;
+      line-height: 1.6;
+      font-weight: 400;
+      margin-bottom: var(--spacing-lg);
+    }
+    .hero-cta { 
+      display: flex; 
+      gap: var(--spacing-md); 
+      flex-wrap: wrap; 
+      align-items: center; 
+    }
+    .hero-card {
+      background: var(--background);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      box-shadow: var(--shadow-soft);
+    }
+    .hero-points { 
+      display: grid; 
+      grid-template-columns: repeat(2, minmax(0, 1fr)); 
+      gap: var(--spacing-sm); 
+      margin-top: var(--spacing-md); 
+    }
+    .chip { 
+      display: inline-flex; 
+      align-items: center; 
+      gap: 8px; 
+      padding: 12px 16px; 
+      border-radius: var(--radius); 
+      background: var(--background-subtle); 
+      border: 1px solid var(--border-light); 
+      font-size: 0.85rem; 
+      color: var(--text-secondary);
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+    .chip:hover {
+      background: var(--background);
+      border-color: var(--border-light);
+      transform: translateY(-1px);
+    }
+    .chip svg { width: 16px; height: 16px; color: var(--brand-primary); }
+
+    /* Sections */
+    section { padding: var(--spacing-xl) 0; }
+    .section-title { 
+      font-size: clamp(1.8rem, 3vw, 2.5rem); 
+      margin-bottom: var(--spacing-md); 
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+    .section-sub { 
+      color: var(--text-secondary); 
+      margin-bottom: var(--spacing-lg); 
+      max-width: 700px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      font-weight: 400;
+    }
+
+    /* Cards grid */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--spacing-lg);
+    }
+    .card {
+      background: var(--background);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      box-shadow: var(--shadow-subtle);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .card:hover { 
+      transform: translateY(-2px); 
+      box-shadow: var(--shadow-elevated);
+      border-color: var(--border-light);
+    }
+    .card h3 { 
+      margin-top: var(--spacing-md); 
+      margin-bottom: var(--spacing-sm);
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+    }
+    .card p { 
+      color: var(--text-secondary);
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+    .card .icon { 
+      width: 32px; 
+      height: 32px; 
+      color: var(--brand-primary);
+      opacity: 0.8;
+    }
+
+    /* Why Choose Us */
+    .why { 
+      display: grid; 
+      grid-template-columns: 1.1fr 0.9fr; 
+      gap: var(--spacing-xl); 
+      align-items: start; 
+    }
+    .list { 
+      list-style: none; 
+      padding: 0; 
+      margin: 0; 
+      display: grid; 
+      gap: var(--spacing-md); 
+    }
+    .list li { 
+      display: flex; 
+      align-items: flex-start; 
+      gap: var(--spacing-sm); 
+      padding: var(--spacing-sm) 0;
+    }
+    .list li strong {
+      color: var(--text-primary);
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: -0.01em;
+    }
+    .list svg { 
+      flex: 0 0 auto; 
+      width: 18px; 
+      height: 18px; 
+      color: var(--brand-primary); 
+      margin-top: 4px;
+      opacity: 0.8;
+    }
+
+    /* Contact */
+    .contact {
+      background: var(--background-subtle);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-md);
+      background: var(--background);
+      border: 1px solid var(--border-light);
+      padding: var(--spacing-lg);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      max-width: 800px;
+    }
+    label { 
+      font-weight: 500; 
+      font-size: 0.9rem; 
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border-light);
+      outline: none;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      background: var(--background);
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+    input:focus, textarea:focus {
+      border-color: var(--brand-primary);
+      box-shadow: 0 0 0 3px rgba(44, 62, 80, 0.1);
+    }
+    textarea { 
+      resize: vertical; 
+      min-height: 120px; 
+      grid-column: 1 / -1;
+      line-height: 1.6;
+    }
+    .full { grid-column: 1 / -1; }
+    .form-row { display: flex; flex-direction: column; }
+
+    .form-actions { 
+      display: flex; 
+      gap: var(--spacing-md); 
+      align-items: center;
+      margin-top: var(--spacing-sm);
+    }
+    .note { 
+      color: var(--text-muted); 
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    footer {
+      padding: var(--spacing-lg) 0; 
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border-subtle);
+    }
+    .footer-inner { 
+      display: grid; 
+      grid-template-columns: 1fr auto; 
+      gap: var(--spacing-md); 
+      align-items: center; 
+    }
+    .social { display: flex; gap: var(--spacing-sm); }
+    .social a {
+      width: 40px; 
+      height: 40px; 
+      border-radius: var(--radius); 
+      display: inline-flex; 
+      align-items: center; 
+      justify-content: center; 
+      color: var(--brand-primary);
+      background: var(--background); 
+      border: 1px solid var(--border-light); 
+      box-shadow: var(--shadow-subtle); 
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .social a:hover { 
+      transform: translateY(-1px); 
+      box-shadow: var(--shadow-soft);
+      border-color: var(--brand-primary);
+    }
+
+    /* Utilities */
+    .muted { color: var(--text-muted); }
+    .spacer-s { height: 8px; }
+    .spacer-m { height: 16px; }
+    .spacer-l { height: 28px; }
+    .text-center { text-align: center; }
+    .sr-only { 
+      position: absolute; 
+      width: 1px; 
+      height: 1px; 
+      padding: 0; 
+      margin: -1px; 
+      overflow: hidden; 
+      clip: rect(0, 0, 0, 0); 
+      white-space: nowrap; 
+      border: 0; 
+    }
+    .hidden { display: none; }
+    .visible { display: block; }
+
+    /* Partners Section */
+    #partners {
+      background: var(--background-subtle);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .partners-scroll {
+      overflow: hidden;
+      margin-top: var(--spacing-lg);
+      position: relative;
+    }
+
+    .partners-track {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xl);
+      animation: scroll 30s linear infinite;
+      width: fit-content;
+    }
+
+    .partner-logo {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--spacing-sm);
+      background: var(--background);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-subtle);
+      transition: all 0.3s ease;
+      height: 80px;
+      min-width: 140px;
+    }
+
+    .partner-logo:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .partner-logo img {
+      max-width: 120px;
+      max-height: 60px;
+      object-fit: contain;
+      filter: grayscale(100%) opacity(0.7);
+      transition: filter 0.3s ease;
+    }
+
+    .partner-logo:hover img {
+      filter: grayscale(0%) opacity(1);
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* Pause animation on hover */
+    .partners-scroll:hover .partners-track {
+      animation-play-state: paused;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card, .hero-card, .chip {
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    .card:nth-child(2) { animation-delay: 0.1s; }
+    .card:nth-child(3) { animation-delay: 0.2s; }
+    .card:nth-child(4) { animation-delay: 0.3s; }
+
+    /* Responsive */
+    @media (max-width: 980px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .why { grid-template-columns: 1fr; }
+      form { grid-template-columns: 1fr; }
+      .container { padding: 0 var(--spacing-sm); }
+    }
+
+    @media (max-width: 768px) {
+      .hero-card { order: -1; }
+      .footer-inner { grid-template-columns: 1fr; text-align: center; gap: var(--spacing-md); }
+      .social { justify-content: center; }
+      section { padding: var(--spacing-lg) 0; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="#top" class="brand" aria-label="Infomac IT Solutions home">
+        <img src="original-3dcdfd36cc32f490632f4ab2c1b4068f.jpg" alt="Infomac IT Solutions Logo" class="logo">
+        <span>Infomac IT Solutions</span>
+      </a>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#partners">Partners</a></li>
+          <li><a href="#why">Why Us</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><button id="consult-top" class="btn-primary" type="button">Book a Free Consultation</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-inner">
+        <div>
+          <div class="kicker">Infomac IT Solutions</div>
+          <h1 id="hero-title">End-to-End Software Support for Fleet & Logistics Businesses</h1>
+          <p class="tagline">Software Consultancy specializing in setup, configuration, and ongoing support across leading tracking platforms, compliance-ready tacho analysis software, and DVR/video feed solutions selected by your organization.</p>
+          <div class="hero-cta">
+            <button id="consult-hero" class="btn-primary" type="button">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14m7-7H5" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+              Book a Free Consultation
+            </button>
+            <a href="#services" class="muted">Explore services</a>
+          </div>
+        </div>
+        <div class="hero-card" aria-hidden="true">
+          <strong>What we cover</strong>
+          <div class="hero-points">
+            <span class="chip">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h10M4 17h7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              Fleet Tracking Setup
+            </span>
+            <span class="chip">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 6v12M6 12h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              Tacho Compliance
+            </span>
+            <span class="chip">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M4 8h16v8H4z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg>
+              DVR & Video
+            </span>
+            <span class="chip">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M8 7l4-3 4 3M4 10h16v8H4z" stroke="currentColor" stroke-width="2"/></svg>
+              Remote Support
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" aria-labelledby="about-title">
+      <div class="container">
+        <h2 class="section-title" id="about-title">About Us</h2>
+        <p class="section-sub">Infomac IT Solutions is a UK-based software consultancy helping fleet and logistics businesses implement and operate mission-critical software. We specialize in setup, configuration, and support for tracking software, compliance-focused tachograph analysis tools, and DVR/video feed solutions chosen by our clients.</p>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" aria-labelledby="services-title">
+      <div class="container">
+        <h2 class="section-title" id="services-title">Services</h2>
+        <div class="grid-3">
+          <article class="card" aria-labelledby="svc1-title">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 13h18M5 8h14M7 18h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <h3 id="svc1-title">Fleet Tracking Support</h3>
+            <p>Setup and maintenance for any fleet tracking software: provisioning, integrations, dashboards, and ongoing optimization.</p>
+          </article>
+          <article class="card" aria-labelledby="svc2-title">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6h12v12H6z" stroke="currentColor" stroke-width="2"/><path d="M9 9h6v6H9z" fill="currentColor"/></svg>
+            <h3 id="svc2-title">Tacho Analysis Support</h3>
+            <p>Compliance-ready tachograph software setup, configuration, and staff training to keep audits smooth and reliable.</p>
+          </article>
+          <article class="card" aria-labelledby="svc3-title">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h12v10H4z" stroke="currentColor" stroke-width="2"/><path d="M16 12l4-3v6l-4-3z" fill="currentColor"/></svg>
+            <h3 id="svc3-title">DVR & Video Feed Support</h3>
+            <p>Installation and support for DVR and live video feed solutions, ensuring reliable visibility and incident review.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partners -->
+    <section id="partners" aria-labelledby="partners-title">
+      <div class="container">
+        <h2 class="section-title" id="partners-title">Our Partners</h2>
+        <p class="section-sub">We work with leading fleet management and telematics providers across the UK and EU</p>
+        <div class="partners-scroll">
+          <div class="partners-track">
+            <!-- First set of logos -->
+            <div class="partner-logo">
+              <img src="Gurtam-Logo-Vector.jpg" alt="Gurtam Wialon" />
+            </div>
+            <div class="partner-logo">
+              <img src="webfleet.jpg" alt="Webfleet Solutions" />
+            </div>
+            <div class="partner-logo">
+              <img src="Samsara-Logo.jpg" alt="Samsara" />
+            </div>
+            <div class="partner-logo">
+              <img src="geotab.jpg" alt="Geotab" />
+            </div>
+            <div class="partner-logo">
+              <img src="teletrac navman.png" alt="Teletrac Navman" />
+            </div>
+            <div class="partner-logo">
+              <img src="fleetcomplete.jpg" alt="Fleet Complete" />
+            </div>
+            <!-- Duplicate set for seamless loop -->
+            <div class="partner-logo">
+              <img src="Gurtam-Logo-Vector.jpg" alt="Gurtam Wialon" />
+            </div>
+            <div class="partner-logo">
+              <img src="webfleet.jpg" alt="Webfleet Solutions" />
+            </div>
+            <div class="partner-logo">
+              <img src="Samsara-Logo.jpg" alt="Samsara" />
+            </div>
+            <div class="partner-logo">
+              <img src="geotab.jpg" alt="Geotab" />
+            </div>
+            <div class="partner-logo">
+              <img src="teletrac navman.png" alt="Teletrac Navman" />
+            </div>
+            <div class="partner-logo">
+              <img src="fleetcomplete.jpg" alt="Fleet Complete" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="why" aria-labelledby="why-title">
+      <div class="container why">
+        <div>
+          <h2 class="section-title" id="why-title">Why Choose Us</h2>
+          <p class="section-sub">We combine deep domain knowledge with pragmatic delivery to keep your operations running.</p>
+          <ul class="list">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <div><strong>Cost efficiency</strong><div class="muted">Reduce total cost of ownership without compromising on quality.</div></div>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <div><strong>Expertise in multiple software platforms</strong><div class="muted">Broad experience across leading tracking, tacho, and DVR ecosystems.</div></div>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <div><strong>End-to-end support</strong><div class="muted">From initial setup to day-2 operations, training, and ongoing care.</div></div>
+            </li>
+          </ul>
+        </div>
+        <div class="hero-card">
+          <strong>Ready to get started?</strong>
+          <div class="spacer-s"></div>
+          <button id="consult-why" class="btn-primary" type="button">Book a Free Consultation</button>
+          <div class="spacer-s"></div>
+          <div class="muted">Or email us at <a href="mailto:info@infomacsolutions.com">info@infomacsolutions.com</a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <h2 class="section-title" id="contact-title">Contact Us</h2>
+        <p class="section-sub">Tell us a little about your software stack and goals. We'll get back within one business day.</p>
+
+        <form id="contact-form" novalidate>
+          <div class="form-row">
+            <label for="name">Name *</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required />
+          </div>
+          <div class="form-row">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" placeholder="you@company.com" required />
+          </div>
+          <div class="form-row">
+            <label for="company">Company</label>
+            <input type="text" id="company" name="company" placeholder="Your company" />
+          </div>
+          <div class="form-row full">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" placeholder="How can we help?" required></textarea>
+          </div>
+          <div class="full form-actions">
+            <button class="btn-primary" type="submit">Send Inquiry</button>
+            <span class="note">Form opens your email client and pre-fills details addressed to info@infomacsolutions.com.</span>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        <strong>Infomac IT Solutions</strong>
+        <div class="muted">info@infomacsolutions.com</div>
+        <div class="muted">© <span id="year"></span> Infomac IT Solutions. All rights reserved.</div>
+      </div>
+      <div class="social" aria-label="Social links">
+        <a href="#" aria-label="LinkedIn" title="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zm7.5 0h3.8v2.2h.05c.53-1 1.84-2.2 3.8-2.2 4.06 0 4.8 2.67 4.8 6.14V24h-4v-7.9c0-1.88-.03-4.3-2.62-4.3-2.63 0-3.03 2.05-3.03 4.17V24h-3.8V8z" /></svg>
+        </a>
+        <a href="#" aria-label="Twitter/X" title="Twitter/X">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2H21.5l-7.5 8.571L23.5 22h-6.5l-5.09-6.036L5.9 22H2.64l8.036-9.171L.5 2h6.645l4.62 5.556L18.244 2zm-1.14 18h1.773L7.015 4H5.133L17.104 20z"/></svg>
+        </a>
+        <a href="#" aria-label="YouTube" title="YouTube">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2 31.3 31.3 0 000 12a31.3 31.3 0 00.5 5.8 3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1A31.3 31.3 0 0024 12a31.3 31.3 0 00-.5-5.8zM9.5 15.5v-7l6 3.5-6 3.5z"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Configuration: set your Calendly link here if you have one
+    const calendlyLink = ""; // e.g., "https://calendly.com/infomacsolutions/consultation"
+    const contactEmail = "info@infomacsolutions.com";
+
+    const consultationButtons = [
+      document.getElementById('consult-top'),
+      document.getElementById('consult-hero'),
+      document.getElementById('consult-why')
+    ].filter(Boolean);
+
+    consultationButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (calendlyLink && /^https?:\/\//i.test(calendlyLink)) {
+          window.open(calendlyLink, '_blank', 'noopener');
+        } else {
+          const subject = encodeURIComponent('Free Consultation Request');
+          const body = encodeURIComponent('Hi Infomac IT Solutions,%0D%0A%0D%0AI would like to schedule a free consultation. Here are some details about our needs:%0D%0A%0D%0A- Fleet tracking / Tacho / DVR:%0D%0A- Preferred time:%0D%0A- Company:%0D%0A%0D%0AThank you!');
+          window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
+        }
+      });
+    });
+
+    // Contact form: open mail client with prefilled details
+    const form = document.getElementById('contact-form');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const subject = encodeURIComponent('Contact Form Submission');
+      const body = encodeURIComponent(`Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0A${document.getElementById('message').value}`);
+      window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
+    });
