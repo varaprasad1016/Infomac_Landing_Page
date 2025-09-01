@@ -779,12 +779,13 @@
 
     consultationButtons.forEach(btn => {
       btn.addEventListener('click', () => {
-        if (calendlyLink && /^https?:\/\//i.test(calendlyLink)) {
-          window.open(calendlyLink, '_blank', 'noopener');
-        } else {
-          const subject = encodeURIComponent('Free Consultation Request');
-          const body = encodeURIComponent('Hi Infomac IT Solutions,%0D%0A%0D%0AI would like to schedule a free consultation. Here are some details about our needs:%0D%0A%0D%0A- Fleet tracking / Tacho / DVR:%0D%0A- Preferred time:%0D%0A- Company:%0D%0A%0D%0AThank you!');
-          window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
+        // Scroll to contact form section
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+          contactSection.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+          });
         }
       });
     });
@@ -799,3 +800,6 @@
       const body = encodeURIComponent(`Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0A${document.getElementById('message').value}`);
       window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
     });
+  </script>
+</body>
+</html>
